@@ -1,0 +1,9 @@
+#+title: Notes
+
+* loading data
+split with async functions and return separately
+prefetch with data-sveltekit-prefetch on hover
+** page.server.js
+use page.server.js for things that need an API key
+- doesn't use svelte fetch
+- import svelte vars
