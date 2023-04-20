@@ -7,3 +7,6 @@ prefetch with data-sveltekit-prefetch on hover
 use page.server.js for things that need an API key
 - doesn't use svelte fetch
 - import svelte vars
+* theming
+color schemes (easy dark mode): https://web.dev/color-scheme/
+split the page: https://www.w3schools.com/howto/howto_css_split_screen.asp
