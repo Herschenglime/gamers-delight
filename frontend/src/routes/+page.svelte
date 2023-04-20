@@ -1,58 +1,95 @@
 <script>
- export let data
- const { message } = data //destructuring products array out of data object
+  import Card from './Card.svelte';
+
+  export let data;
+  const { message } = data; //destructuring products array out of data object
 </script>
 
 <h1 style:text-align="center">Gamer's Delight</h1>
 
-<div class="split">
-  <div id="left">
-    test
+<div class="container">
+  <div id="left" class="split">
+    <form>
+      <label for="game-name">Game name?</label>
+      <input type="text" id="game-name" />
+
+      <Card title="Weights">
+        <!-- put an each block here once we get the things we care about -->
+        <fieldset>
+          <div class="slider-group">
+            <select name="publisher" id="publisher">
+              <!-- smaller each here to go through the possible values to select -->
+              <option value="nintendo">Nintendo</option>
+            </select>
+            <label for="">Publisher</label>
+            <input type="range" id="publisher-weight" name="publisher" max="5" step="1" value="4" />
+          </div>
+        </fieldset>
+      </Card>
+
+      <Card title="Sort By">
+        <fieldset>
+          <input type="radio" id="sales" name="sort-criteria" value="sales" checked>
+          <label for="sales">Sales</label>
+
+          <input type="radio" id="critic-score" name="sort-criteria" value="critic-score">
+          <label for="critic-score">Critic Score</label>
+
+          <input type="radio" id="user-score" name="sort-criteria" value="user-score">
+          <label for="user-score">User Score</label>
+
+          <br />
+
+          <input type="radio" id="ascending" name="sort-order" value="ascending">
+          <label for="ascending">Ascending</label>
+
+          <input type="radio" id="descending" name="sort-order" value="descending" checked>
+          <label for="descending">Descending</label>
+        </fieldset>
+      </Card>
+
+      <Card title="Sorting Algorithm">
+        <input type="radio" id="shell" value="shell" name="sort" checked>
+        <label for="shell">Shell Sort</label>
+
+        <input type="radio" id="quick" value="quick" name="sort">
+        <label for="quick">Quick Sort</label>
+
+        <input type="radio" id="merge" value="merge" name="sort">
+        <label for="merge">Merge Sort</label>
+
+      </Card>
+    </form>
   </div>
 
-  <div id="right">
-
-    over here too
-  </div>
-
+  <div id="right" class="split">over here too</div>
 </div>
 
-
-<svelte:head>
-   <!-- this makes the page dark by default -->
-  <meta name="color-scheme" content="dark light"/>
-</svelte:head>
 <style>
-:root {
-  font-family: sans-serif;
- }
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --color-lightest: hsl(0deg, 0%, 0%);
-    --color-lighter: hsl(0deg, 0%, 20%);
-    --color-light: hsl(0deg, 0%, 40%);
-    --color-strong: hsl(0deg, 0%, 60%);
-    --color-stronger: hsl(0deg, 0%, 80%);
-    --color-strongest: hsl(0deg, 0%, 100%);
+  /* https://www.w3schools.com/howto/howto_css_split_screen.asp */
+  /* Split the screen in half */
+  .container {
+    display: flex;
+    margin: 0;
   }
-}
- /* https://www.w3schools.com/howto/howto_css_split_screen.asp */
- /* Split the screen in half */
-.split {
-  display: flex;
-}
 
-/* Control the left side */
-#left {
-  flex: 1;
-  background-color: #111;
-}
+  .split {
+    display: inline-block;
+    overflow-y: auto;
+    margin: 5px;
+  }
+  /* Control the left side */
+  #left {
+    flex: 1;
+    border-right: 1px solid;
+  }
 
-/* Control the right side */
-#right {
-  flex: 1;
-  background-color: red;
-}
+  /* Control the right side */
+  #right {
+    flex: 1;
+  }
 
+  .slider-group {
+    text-align: center;
+  }
 </style>
