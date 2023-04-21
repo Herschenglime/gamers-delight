@@ -1,8 +1,8 @@
-//flexibly works between server and client
+const apiurl = 'http://127.0.0.1:8000/'
 
 export const load = async () => {
 
-  const messageRes = await fetch('http://127.0.0.1:8000/')
+  const messageRes = await fetch(apiurl)
   const messageData = await messageRes.json() //waits on the above, then fires
 
   const message = messageData.message
