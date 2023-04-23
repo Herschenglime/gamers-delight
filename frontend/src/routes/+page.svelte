@@ -2,7 +2,9 @@
   import Card from './Card.svelte';
 
   export let data;
-  const { message } = data; //destructuring products array out of data object
+  const { message, oneGame } = data; //destructuring products array out of data object
+ console.log("this is oneGame!")
+  console.log(oneGame)
 </script>
 
 <h1 style:text-align="center">Gamer's Delight</h1>
@@ -29,40 +31,54 @@
 
       <Card title="Sort By">
         <fieldset>
-          <input type="radio" id="sales" name="sort-criteria" value="sales" checked>
+          <input type="radio" id="sales" name="sort-criteria" value="sales" checked />
           <label for="sales">Sales</label>
 
-          <input type="radio" id="critic-score" name="sort-criteria" value="critic-score">
+          <input type="radio" id="critic-score" name="sort-criteria" value="critic-score" />
           <label for="critic-score">Critic Score</label>
 
-          <input type="radio" id="user-score" name="sort-criteria" value="user-score">
+          <input type="radio" id="user-score" name="sort-criteria" value="user-score" />
           <label for="user-score">User Score</label>
 
           <br />
 
-          <input type="radio" id="ascending" name="sort-order" value="ascending">
+          <input type="radio" id="ascending" name="sort-order" value="ascending" />
           <label for="ascending">Ascending</label>
 
-          <input type="radio" id="descending" name="sort-order" value="descending" checked>
+          <input type="radio" id="descending" name="sort-order" value="descending" checked />
           <label for="descending">Descending</label>
         </fieldset>
       </Card>
 
       <Card title="Sorting Algorithm">
-        <input type="radio" id="shell" value="shell" name="sort" checked>
+        <input type="radio" id="shell" value="shell" name="sort" checked />
         <label for="shell">Shell Sort</label>
 
-        <input type="radio" id="quick" value="quick" name="sort">
+        <input type="radio" id="quick" value="quick" name="sort" />
         <label for="quick">Quick Sort</label>
 
-        <input type="radio" id="merge" value="merge" name="sort">
+        <input type="radio" id="merge" value="merge" name="sort" />
         <label for="merge">Merge Sort</label>
-
       </Card>
     </form>
   </div>
 
-  <div id="right" class="split">over here too</div>
+  <div id="right" class="split">
+    <h2 style:text-align="center">Matches</h2>
+    <Card title="{oneGame[0].Name}">
+      {#if oneGame[0].Similarity_Score}
+          this game similar as heck yo
+      {:else}
+        not similar, yo
+      {/if}
+
+      <h4>Year: {oneGame[0].Year_of_Release}</h4>
+      <h4>Sales: {(oneGame[0].Global_Sales * 1000000).toLocaleString()}</h4>
+      <h4>Platform: {oneGame[0].Global_Sales.Platform}</h4>
+      <h4>Genre: {oneGame[0].Genre}</h4>
+    </Card>
+
+  </div>
 </div>
 
 <style>

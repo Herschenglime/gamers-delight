@@ -135,7 +135,7 @@ def rank_games(unsortedList, publisherGiven, publisherNum, developerGiven, devel
       similarityScore += genreNum
     
     if similarityScore/outOfTotal >= 0.70:
-      game["Similarity Score"] = similarityScore/outOfTotal
+      game["Similarity_Score"] = similarityScore/outOfTotal
       similarGames.append(game)
 
   if sortAlg == "quick":
@@ -176,7 +176,7 @@ async def testAPI():
 
 @app.get("/onegametest")
 async def testingONEGAME():
-   return return_one_game_for_testing
+   return return_one_game_for_testing()
 
 
 
