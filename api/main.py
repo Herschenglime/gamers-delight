@@ -3,6 +3,7 @@
 #sorting junk
 import pandas as pd
 import time
+from fastapi import FastAPI, Form
 
 frame = pd.read_csv("Video_Games_Sales_as_at_22_Dec_2016 2.csv")
 frame = frame.fillna(-1)
@@ -184,6 +185,19 @@ async def testingONEGAME():
 @app.get("/unsorted")
 async def giveUnsorted():
    return giveUnsortedList()
+
+@app.post("/submitform")
+async def handle_form(gameName: str = Form(...), publisher: str = Form(...), publisherNum: int = Form(...), developer: str = Form(...), developerNum: int = Form(...), platform: str = Form(...), platformNum: int = Form(...), genre: str = Form(...), genreNum: int = Form(...), sortBy: str = Form(...), sortAlg: str = Form(...), ascend: str = Form(...)):
+   return "got form"
+   if gameName == '':
+      #possibly adjust for ascend issue
+      return rank_games(unsortedList,publisher,publisherNum,developer,developerNum,platform,platformNum,genre,genreNum,sortBy, ascend)
+   else:
+      return rank_from_game(unsortedList, gameName, publisherNum,developerNum,platformNum,genreNum,sortBy,sortAlg,ascend)
+      
+      
+   
+
 
 
 
