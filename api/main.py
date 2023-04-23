@@ -4,6 +4,7 @@
 import pandas as pd
 import time
 from fastapi import FastAPI, Form
+from pydantic import BaseModel
 
 frame = pd.read_csv("Video_Games_Sales_as_at_22_Dec_2016 2.csv")
 frame = frame.fillna(-1)
@@ -199,8 +200,32 @@ async def handle_form(gameName: str = Form(...), publisher: str = Form(...), pub
       else:
          return rank_from_game(unsortedList, gameName, publisherNum,developerNum,platformNum,genreNum,sortBy,sortAlg,False)
       
-   
+class Item(BaseModel):
+   gameName: str
+   publisher: str
+   publisherNum: int
+   developer: str
+   developerNum: int
+   platform: str
+   platformNum: int
+   genre: str
+   genreNum: int
+   sortBy: str
+   SortAlg: str
+   ascend: str
 
+@app.post("/submitwithpydant")
+async def create_item(item: Item):
+   if item.gameName == '':
+      if item.ascend == 'true':
+        return rank_games(unsortedList,item.publisher,item.publisherNum,item.developer,item.developerNum,item.platform,item.platformNum,item.genre,item.genreNum,item.sortBy, item.sortAlg, True)
+      else:
+         return rank_games(unsortedList,item.publisher,item.publisherNum,item.developer,item.developerNum,item.platform,item.platformNum,item.genre,item.genreNum,item.sortBy, item.sortAlg, False)
+   else:
+      if item.ascend == 'true':
+         return rank_from_game(unsortedList, item.gameName, item.publisherNum,item.developerNum,item.platformNum,item.genreNum,item.sortBy,item.sortAlg,True)
+      else:
+         return rank_from_game(unsortedList, item.gameName, item.publisherNum,item.developerNum,item.platformNum,item.genreNum,item.sortBy,item.sortAlg,False)
 
 
 
