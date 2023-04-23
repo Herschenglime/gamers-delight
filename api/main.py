@@ -201,15 +201,15 @@ async def handle_form(gameName: str = Form(...), publisher: str = Form(...), pub
          return rank_from_game(unsortedList, gameName, publisherNum,developerNum,platformNum,genreNum,sortBy,sortAlg,False)
       
 class Item(BaseModel):
-   gameName: str
+   gameName: str | None = None
    publisher: str
-   publisherNum: int
+   publisherNum: str
    developer: str
-   developerNum: int
+   developerNum: str
    platform: str
-   platformNum: int
+   platformNum: str
    genre: str
-   genreNum: int
+   genreNum: str
    sortBy: str
    SortAlg: str
    ascend: str
@@ -218,14 +218,14 @@ class Item(BaseModel):
 async def create_item(item: Item):
    if item.gameName == '':
       if item.ascend == 'true':
-        return rank_games(unsortedList,item.publisher,item.publisherNum,item.developer,item.developerNum,item.platform,item.platformNum,item.genre,item.genreNum,item.sortBy, item.sortAlg, True)
+        return rank_games(unsortedList,item.publisher,int(item.publisherNum),item.developer,int(item.developerNum),item.platform,int(item.platformNum),item.genre,int(item.genreNum),item.sortBy, item.sortAlg, True)
       else:
-         return rank_games(unsortedList,item.publisher,item.publisherNum,item.developer,item.developerNum,item.platform,item.platformNum,item.genre,item.genreNum,item.sortBy, item.sortAlg, False)
+         return rank_games(unsortedList,item.publisher,int(item.publisherNum),item.developer,int(item.developerNum),item.platform,int(item.platformNum),item.genre,int(item.genreNum),item.sortBy, item.sortAlg, False)
    else:
       if item.ascend == 'true':
-         return rank_from_game(unsortedList, item.gameName, item.publisherNum,item.developerNum,item.platformNum,item.genreNum,item.sortBy,item.sortAlg,True)
+         return rank_from_game(unsortedList, int(item.gameName), item.publisherNum,int(item.developerNum),int(item.platformNum),int(item.genreNum),item.sortBy,item.sortAlg,True)
       else:
-         return rank_from_game(unsortedList, item.gameName, item.publisherNum,item.developerNum,item.platformNum,item.genreNum,item.sortBy,item.sortAlg,False)
+         return rank_from_game(unsortedList, int(item.gameName), item.publisherNum,int(item.developerNum),int(item.platformNum),int(item.genreNum),item.sortBy,item.sortAlg,False)
 
 
 
