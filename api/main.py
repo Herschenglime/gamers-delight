@@ -150,6 +150,9 @@ def rank_games(unsortedList, publisherGiven, publisherNum, developerGiven, devel
 def rank_from_game(unsortedList, gameTitle, publisherNum, developerNum, platformNum, genreNum, sortBy, sortAlg, Ascend):
   # make full list of games
   return rank_games(unsortedList, gameMap[gameTitle]["Publisher"], publisherNum,  gameMap[gameTitle]["Developer"], developerNum, gameMap[gameTitle]["Platform"], platformNum, gameMap[gameTitle]["Genre"], genreNum,sortBy, sortAlg, Ascend)
+
+def return_one_game_for_testing():
+   return unsortedList[0], 27.34
   
 
 
@@ -170,6 +173,10 @@ async def root():
 @app.get("/test")
 async def testAPI():
     return rank_games(unsortedList, "Nintendo", 0, "taco", 0, "NES", 0, "Platform", 0, "Global_Sales", "merge", True)
+
+@app.get("/onegametest")
+async def testingONEGAME():
+   return return_one_game_for_testing
 
 
 
