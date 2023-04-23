@@ -27,15 +27,16 @@ export const load = async () => {
       genres.add(game.Genre)
     }
 
-    const sortables = {publishers, developers, platforms, genres}
+    const attributes = {publishers, developers, platforms, genres}
 
-    for (const sortableName in sortables) {
-      console.log(sortableName)
-      sortables[sortableName].delete(-1)
+    for (const attributeName in attributes) {
+      console.log(attributeName)
+      attributes[attributeName].delete(-1)
+      attributes[attributeName].add("N/A")
     }
 
-    console.log(sortables)
-    return {gameList, sortables}
+    console.log(attributes)
+    return {gameList, attributes}
   }
 
 
