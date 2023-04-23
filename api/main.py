@@ -50,6 +50,63 @@ def quicksortrecursive(unsortedList, sortBy):
         greaterThan.append(game)    
     return quicksortrecursive(smallerThan, sortBy) + equalTo + quicksortrecursive(greaterThan, sortBy)
 
+def mergesort(unsortedList, sortBy, ascending = True):
+    start = time.perf_counter()
+    sortedascend = mergesortrecursive(unsortedList, sortBy)
+    if (ascending):
+        return sortedascend, (time.perf_counter() - start)
+    return sortedascend.reverse(), (time.perf_counter() - start)
+
+def mergesortrecursive(unsortedList, sortBy):
+    length = len(unsortedList)
+    if length == 1 or length == 0:
+        return unsortedList
+
+    sortedList = []
+
+    midIndex = length // 2
+
+    left = mergesortrecursive(unsortedList[:midIndex], sortBy)
+    right = mergesortrecursive(unsortedList[midIndex:], sortBy)
+    leftPointer = 0
+    rightPointer = 0
+    while (leftPointer < midIndex and rightPointer < length - midIndex):
+        if left[leftPointer][sortBy] < right[rightPointer][sortBy]:
+            sortedList.append(left[leftPointer])
+            leftPointer += 1
+        else:
+            sortedList.append(right[rightPointer])
+            rightPointer += 1
+    
+    while (leftPointer < midIndex):
+        sortedList.append(left[leftPointer])
+        leftPointer += 1
+    
+    while (rightPointer < length - midIndex):
+        sortedList.append(right[rightPointer])
+        rightPointer += 1
+    
+    return sortedList
+
+def shellsort(unsortedList, sortBy, ascending = True, gapFactor = 2):
+    start = time.perf_counter()
+    sortedList = unsortedList
+    gap = len(sortedList) // gapFactor
+    while (gap > 0):
+        index = gap
+        while (index < len(sortedList)):
+            tempIndex = index
+            while (tempIndex >= gap and sortedList[tempIndex][sortBy] < sortedList[tempIndex - gap][sortBy]):
+                temp = sortedList[tempIndex]
+                sortedList[tempIndex] = sortedList[tempIndex - gap]
+                sortedList[tempIndex - gap] = temp
+                tempIndex -= gap
+            index += 1
+        gap //= gapFactor
+    if (ascending):
+      return sortedList, (time.perf_counter() - start)
+    return sortedList.reverse(), (time.perf_counter() - start)
+
 def rank_games(unsortedList, publisherGiven, publisherNum, developerGiven, developerNum, platformGiven, platformNum, genreGiven, genreNum, sortBy, sortAlg, Ascend):
 
   outOfTotal = (publisherNum + developerNum + platformNum + genreNum)
@@ -58,11 +115,9 @@ def rank_games(unsortedList, publisherGiven, publisherNum, developerGiven, devel
     if sortAlg == "quick":
       sortedGames = quicksort(unsortedList, sortBy, Ascend)
     elif sortAlg == "merge":
-      a = 5
-      #put in merge
+      sortedGames = mergesort(unsortedList, sortBy, Ascend)
     elif sortAlg == "shell":
-      a = 5
-      #put in shell
+      sortedGames = shellsort(unsortedList, sortBy, Ascend)
     
     return sortedGames
 
@@ -86,11 +141,9 @@ def rank_games(unsortedList, publisherGiven, publisherNum, developerGiven, devel
   if sortAlg == "quick":
     sortedSimilarGames = quicksort(similarGames, sortBy, Ascend)
   elif sortAlg == "merge":
-    a = 5
-    #put in merge
+    sortedSimilarGames = mergesort(similarGames, sortBy, Ascend)
   elif sortAlg == "shell":
-    a = 5
-    #put in shell
+    sortedSimilarGames = shellsort(similarGames, sortBy, Ascend)
   
   return sortedSimilarGames
   
@@ -101,7 +154,7 @@ def rank_from_game(unsortedList, gameTitle, publisherNum, developerNum, platform
 
 
 
-#rank_games("Nintendo", 0, "taco", 0, "NES", 0, "Platform", 0, "Global_Sales", "quick", True)
+#rank_games("Nintendo", 0, "taco", 0, "NES", 0, "Platform", 0, "Global_Sales", "shell", True)
 #rank_from_game("Super Mario Bros.", 5, 1, 3, 2, "Global_Sales", "quick", False)
 
 
@@ -116,7 +169,7 @@ async def root():
 
 @app.get("/test")
 async def testAPI():
-    return rank_games(unsortedList, "Nintendo", 0, "taco", 0, "NES", 0, "Platform", 0, "Global_Sales", "quick", True)
+    return rank_games(unsortedList, "Nintendo", 0, "taco", 0, "NES", 0, "Platform", 0, "Global_Sales", "merge", True)
 
 
 
@@ -133,4 +186,3 @@ async def read_user_me():
 @app.get("/users/{user_id}")
 async def read_user(user_id: str):
     return {"user_id": user_id}
-
