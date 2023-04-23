@@ -2,7 +2,7 @@
   import Card from './Card.svelte';
 
   export let data;
-  const { message, oneGame, unsorted } = data; //destructuring products array out of data object
+  const { oneGame, unsorted } = data; //destructuring products array out of data object
 
 
 </script>

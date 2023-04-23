@@ -2,13 +2,6 @@ const apiurl = 'http://127.0.0.1:8000/'
 
 export const load = async () => {
 
-  const fetchMessage = async () => {
-    const messageRes = await fetch(apiurl)
-    const messageData = await messageRes.json() //waits on the above, then fires
-
-    return messageData.message
-  }
-
   const fetchTest = async () => {
     const gameRes = await fetch(apiurl + 'onegametest')
     const gameData = await gameRes.json() //waits on the above, then fires
@@ -20,13 +13,33 @@ export const load = async () => {
 
   const fetchUnsorted = async () => {
     const listRes = await fetch(apiurl + 'unsorted')
-    const listData = await listRes.json() //waits on the above, then fires
+    const gameList = await listRes.json() //waits on the above, then fires
 
-    return listData
+    const publishers = new Set()
+    const developers = new Set()
+    const platforms = new Set()
+    const genres = new Set()
+
+    for (const game of gameList) {
+      publishers.add(game.Publisher)
+      developers.add(game.Developer)
+      platforms.add(game.Platform)
+      genres.add(game.Genre)
+    }
+
+    const sortables = {publishers, developers, platforms, genres}
+
+    for (const sortableName in sortables) {
+      console.log(sortableName)
+      sortables[sortableName].delete(-1)
+    }
+
+    console.log(sortables)
+    return {gameList, sortables}
   }
 
+
   return {
-    message: fetchMessage(),
     oneGame: fetchTest(),
     unsorted: fetchUnsorted()
   }
