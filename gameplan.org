@@ -5,5 +5,6 @@
 - [ ] get form submission working, send back to API and handle appropriately
 - [ ] do styling
 - [ ] documentation
+- [ ] make readme nicer
 - [ ] video
 - [ ] profit!

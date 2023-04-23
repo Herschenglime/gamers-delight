@@ -2,7 +2,11 @@
   import Card from './Card.svelte';
 
   export let data;
-  const { message, oneGame } = data; //destructuring products array out of data object
+  const { oneGame, unsorted } = data; //destructuring products array out of data object
+
+  const { gameList, attributes } = unsorted;
+  const attributesArray = Object.entries(attributes);
+  console.log(attributesArray);
 </script>
 
 <h1 style:text-align="center">Gamer's Delight</h1>
@@ -17,12 +21,24 @@
         <!-- put an each block here once we get the things we care about -->
         <fieldset>
           <div class="slider-group">
-            <select name="publisher" id="publisher">
-              <!-- smaller each here to go through the possible values to select -->
-              <option value="nintendo">Nintendo</option>
-            </select>
-            <label for="">Publisher</label>
-            <input type="range" id="publisher-weight" name="publisher" max="5" step="1" value="4" />
+            {#each attributesArray as [name, list]}
+              <select name={name.slice(0, -1)} id={name.slice(0, -1)}>
+                {#each list as attribute}
+                  <option value={attribute.toLowerCase()}>{attribute}</option>
+                {/each}
+                <!-- smaller each here to go through the possible values to select -->
+              </select>
+              <label for="">{name.charAt(0).toUpperCase() + name.slice(1)}</label>
+              <input
+                type="range"
+                id="publisher-weight"
+                name="publisher"
+                max="5"
+                step="1"
+                value="4"
+              />
+              <br />
+            {/each}
           </div>
         </fieldset>
       </Card>
@@ -63,9 +79,9 @@
 
   <div id="right" class="split">
     <h2 style:text-align="center">Matches</h2>
-    <Card title="{oneGame[0].Name}">
+    <Card title={oneGame[0].Name}>
       {#if oneGame[0].Similarity_Score}
-          this game similar as heck yo
+        this game similar as heck yo
       {:else}
         not similar, yo
       {/if}
@@ -75,9 +91,11 @@
       <h4>Platform: {oneGame[0].Global_Sales.Platform}</h4>
       <h4>Genre: {oneGame[0].Genre}</h4>
     </Card>
-
   </div>
 </div>
+
+<!--
+     /* https://stackoverflow.com/questions/31913321/how-can-i-limit-length-of-a-value-in-select-tag-in-html */ -->
 
 <style>
   /* https://www.w3schools.com/howto/howto_css_split_screen.asp */
@@ -90,6 +108,7 @@
   .split {
     display: inline-block;
     overflow-y: auto;
+    margin-top: 10px;
     margin: 5px;
   }
   /* Control the left side */
@@ -105,5 +124,11 @@
 
   .slider-group {
     text-align: center;
+  }
+
+  select {
+    width: 100%;
+    max-width: 10em;
+    text-overflow: ellipsis;
   }
 </style>
