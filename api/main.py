@@ -188,13 +188,16 @@ async def giveUnsorted():
 
 @app.post("/submitform")
 async def handle_form(gameName: str = Form(...), publisher: str = Form(...), publisherNum: int = Form(...), developer: str = Form(...), developerNum: int = Form(...), platform: str = Form(...), platformNum: int = Form(...), genre: str = Form(...), genreNum: int = Form(...), sortBy: str = Form(...), sortAlg: str = Form(...), ascend: str = Form(...)):
-   return "got form"
    if gameName == '':
-      #possibly adjust for ascend issue
-      return rank_games(unsortedList,publisher,publisherNum,developer,developerNum,platform,platformNum,genre,genreNum,sortBy, ascend)
+      if ascend == 'true':
+        return rank_games(unsortedList,publisher,publisherNum,developer,developerNum,platform,platformNum,genre,genreNum,sortBy, True)
+      else:
+         return rank_games(unsortedList,publisher,publisherNum,developer,developerNum,platform,platformNum,genre,genreNum,sortBy, False)
    else:
-      return rank_from_game(unsortedList, gameName, publisherNum,developerNum,platformNum,genreNum,sortBy,sortAlg,ascend)
-      
+      if ascend == 'true':
+         return rank_from_game(unsortedList, gameName, publisherNum,developerNum,platformNum,genreNum,sortBy,sortAlg,True)
+      else:
+         return rank_from_game(unsortedList, gameName, publisherNum,developerNum,platformNum,genreNum,sortBy,sortAlg,False)
       
    
 
