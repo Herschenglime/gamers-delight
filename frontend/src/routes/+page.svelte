@@ -14,7 +14,7 @@
   <div id="left" class="split">
     <form method="POST">
       <label for="game-name">Game name?</label>
-      <input type="text" id="game-name" />
+      <input type="text" id="game" name="game"/>
 
       <Card title="Weights">
         <!-- put an each block here once we get the things we care about -->
@@ -30,8 +30,8 @@
               <label for="">{name.charAt(0).toUpperCase() + name.slice(1)}</label>
               <input
                 type="range"
-                id="publisher-weight"
-                name="publisher"
+                id="{name.slice(0, -1)}Num"
+                name="{name.slice(0, -1)}Num"
                 max="5"
                 step="1"
                 value="4"
@@ -44,21 +44,21 @@
 
       <Card title="Sort By">
         <fieldset>
-          <input type="radio" id="sales" name="sort-criteria" value="sales" checked />
+          <input type="radio" id="sales" name="sortBy" value="sales" checked />
           <label for="sales">Sales</label>
 
-          <input type="radio" id="critic-score" name="sort-criteria" value="critic-score" />
+          <input type="radio" id="critic-score" name="sortBy" value="critic-score" />
           <label for="critic-score">Critic Score</label>
 
-          <input type="radio" id="user-score" name="sort-criteria" value="user-score" />
+          <input type="radio" id="user-score" name="sortBy" value="user-score" />
           <label for="user-score">User Score</label>
 
           <br />
 
-          <input type="radio" id="ascending" name="sort-order" value="ascending" />
+          <input type="radio" id="ascending" name="ascend" value=true />
           <label for="ascending">Ascending</label>
 
-          <input type="radio" id="descending" name="sort-order" value="descending" checked />
+          <input type="radio" id="descending" name="ascend" value=false checked />
           <label for="descending">Descending</label>
         </fieldset>
       </Card>
