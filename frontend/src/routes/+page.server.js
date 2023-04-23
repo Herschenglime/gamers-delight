@@ -27,17 +27,17 @@ export const load = async () => {
       genres.add(game.Genre)
     }
 
-    const attributes = {publishers, developers, platforms, genres}
+    const attributes = { publishers, developers, platforms, genres }
 
     for (const attributeName in attributes) {
       attributes[attributeName].delete(-1)
       attributes[attributeName].add("N/A")
 
       //convert set to array for iterability in svelte
-      attributes[attributeName] =  [...attributes[attributeName]]
+      attributes[attributeName] = [...attributes[attributeName]]
     }
 
-    return {gameList, attributes}
+    return { gameList, attributes }
   }
 
 
@@ -50,8 +50,18 @@ export const load = async () => {
 
 /** @type {import('./$types').Actions} */
 export const actions = {
-    default: async (event) => {
-      console.log("got post")
-      console.log(event)
-    }
+  default: async ({ request }) => {
+    const data = await request.formData()
+    // console.log(data)
+
+    const response = await fetch(apiurl + 'submitform', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data)
+    });
+
+    // console.log(response)
+  }
 };

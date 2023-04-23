@@ -19,3 +19,7 @@ https://stackoverflow.com/questions/3780843/limit-initial-width-of-select-list
 https://stackoverflow.com/questions/31913321/how-can-i-limit-length-of-a-value-in-select-tag-in-html
 ** uppercase first letter
 https://flexiple.com/javascript/javascript-capitalize-first-letter/
+
+
+* forms!
+https://joyofcode.xyz/working-with-forms-in-sveltekit
