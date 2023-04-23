@@ -153,6 +153,9 @@ def rank_from_game(unsortedList, gameTitle, publisherNum, developerNum, platform
 
 def return_one_game_for_testing():
    return unsortedList[0], 27.34
+
+def giveUnsortedList():
+   return unsortedList
   
 
 
@@ -177,6 +180,10 @@ async def testAPI():
 @app.get("/onegametest")
 async def testingONEGAME():
    return return_one_game_for_testing()
+
+@app.get("/unsorted")
+async def giveUnsorted():
+   return giveUnsortedList()
 
 
 
