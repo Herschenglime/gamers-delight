@@ -1,0 +1,9 @@
+#+title: Gameplan
+
+- [ ] Finish populating list of games
+- [ ] Get publishers, etc. into multi-select
+- [ ] get form submission working, send back to API and handle appropriately
+- [ ] do styling
+- [ ] documentation
+- [ ] video
+- [ ] profit!

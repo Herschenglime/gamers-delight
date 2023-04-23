@@ -3,8 +3,6 @@
 
   export let data;
   const { message, oneGame } = data; //destructuring products array out of data object
- console.log("this is oneGame!")
-  console.log(oneGame)
 </script>
 
 <h1 style:text-align="center">Gamer's Delight</h1>
