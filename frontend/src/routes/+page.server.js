@@ -18,9 +18,17 @@ export const load = async () => {
     return gameData
   }
 
+  const fetchUnsorted = async () => {
+    const listRes = await fetch(apiurl + 'unsorted')
+    const listData = await listRes.json() //waits on the above, then fires
+
+    return listData
+  }
+
   return {
     message: fetchMessage(),
-    oneGame: fetchTest()
+    oneGame: fetchTest(),
+    unsorted: fetchUnsorted()
   }
 
 }
