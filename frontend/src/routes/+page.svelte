@@ -5,7 +5,8 @@
   const { oneGame, unsorted } = data; //destructuring products array out of data object
 
   const { gameList, attributes } = unsorted;
-  console.log(attributes);
+  const attributesArray = Object.entries(attributes);
+  console.log(attributesArray);
 </script>
 
 <h1 style:text-align="center">Gamer's Delight</h1>
@@ -20,14 +21,24 @@
         <!-- put an each block here once we get the things we care about -->
         <fieldset>
           <div class="slider-group">
-            <select name="publisher" id="publisher">
-              {#each attributes.publishers as publisher}
-                <option value={publisher.toLowerCase()}>{publisher}</option>
-              {/each}
-              <!-- smaller each here to go through the possible values to select -->
-            </select>
-            <label for="">Publisher</label>
-            <input type="range" id="publisher-weight" name="publisher" max="5" step="1" value="4" />
+            {#each attributesArray as [name, list]}
+              <select name={name.slice(0, -1)} id={name.slice(0, -1)}>
+                {#each list as attribute}
+                  <option value={attribute.toLowerCase()}>{attribute}</option>
+                {/each}
+                <!-- smaller each here to go through the possible values to select -->
+              </select>
+              <label for="">{name.charAt(0).toUpperCase() + name.slice(1)}</label>
+              <input
+                type="range"
+                id="publisher-weight"
+                name="publisher"
+                max="5"
+                step="1"
+                value="4"
+              />
+              <br />
+            {/each}
           </div>
         </fieldset>
       </Card>
@@ -83,6 +94,9 @@
   </div>
 </div>
 
+<!--
+     /* https://stackoverflow.com/questions/31913321/how-can-i-limit-length-of-a-value-in-select-tag-in-html */ -->
+
 <style>
   /* https://www.w3schools.com/howto/howto_css_split_screen.asp */
   /* Split the screen in half */
@@ -110,5 +124,11 @@
 
   .slider-group {
     text-align: center;
+  }
+
+  select {
+    width: 100%;
+    max-width: 10em;
+    text-overflow: ellipsis;
   }
 </style>
