@@ -6,14 +6,13 @@
 
   const { gameList, attributes } = unsorted;
   const attributesArray = Object.entries(attributes);
-  console.log(attributesArray);
 </script>
 
 <h1 style:text-align="center">Gamer's Delight</h1>
 
 <div class="container">
   <div id="left" class="split">
-    <form>
+    <form method="POST">
       <label for="game-name">Game name?</label>
       <input type="text" id="game-name" />
 
@@ -74,6 +73,8 @@
         <input type="radio" id="merge" value="merge" name="sort" />
         <label for="merge">Merge Sort</label>
       </Card>
+
+      <button>Submit form</button>
     </form>
   </div>
 

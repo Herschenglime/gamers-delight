@@ -30,7 +30,6 @@ export const load = async () => {
     const attributes = {publishers, developers, platforms, genres}
 
     for (const attributeName in attributes) {
-      console.log(attributeName)
       attributes[attributeName].delete(-1)
       attributes[attributeName].add("N/A")
 
@@ -38,9 +37,6 @@ export const load = async () => {
       attributes[attributeName] =  [...attributes[attributeName]]
     }
 
-
-
-    console.log(attributes)
     return {gameList, attributes}
   }
 
@@ -51,6 +47,8 @@ export const load = async () => {
   }
 
 }
-  //do this for all returns
-
-//return promises instead of values to avoid waterfall
+export const actions = {
+    default: async (event) => {
+      // console.log(event)
+    }
+};
