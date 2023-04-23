@@ -4,7 +4,8 @@
   export let data;
   const { oneGame, unsorted } = data; //destructuring products array out of data object
 
-
+  const { gameList, attributes } = unsorted;
+  console.log(attributes);
 </script>
 
 <h1 style:text-align="center">Gamer's Delight</h1>
@@ -20,8 +21,10 @@
         <fieldset>
           <div class="slider-group">
             <select name="publisher" id="publisher">
+              {#each attributes.publishers as publisher}
+                <option value={publisher.toLowerCase()}>{publisher}</option>
+              {/each}
               <!-- smaller each here to go through the possible values to select -->
-              <option value="nintendo">Nintendo</option>
             </select>
             <label for="">Publisher</label>
             <input type="range" id="publisher-weight" name="publisher" max="5" step="1" value="4" />
@@ -65,9 +68,9 @@
 
   <div id="right" class="split">
     <h2 style:text-align="center">Matches</h2>
-    <Card title="{oneGame[0].Name}">
+    <Card title={oneGame[0].Name}>
       {#if oneGame[0].Similarity_Score}
-          this game similar as heck yo
+        this game similar as heck yo
       {:else}
         not similar, yo
       {/if}
@@ -77,7 +80,6 @@
       <h4>Platform: {oneGame[0].Global_Sales.Platform}</h4>
       <h4>Genre: {oneGame[0].Genre}</h4>
     </Card>
-
   </div>
 </div>
 
@@ -92,6 +94,7 @@
   .split {
     display: inline-block;
     overflow-y: auto;
+    margin-top: 10px;
     margin: 5px;
   }
   /* Control the left side */

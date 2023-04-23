@@ -33,7 +33,12 @@ export const load = async () => {
       console.log(attributeName)
       attributes[attributeName].delete(-1)
       attributes[attributeName].add("N/A")
+
+      //convert set to array for iterability in svelte
+      attributes[attributeName] =  [...attributes[attributeName]]
     }
+
+
 
     console.log(attributes)
     return {gameList, attributes}
