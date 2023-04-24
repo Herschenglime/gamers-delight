@@ -54,14 +54,12 @@ export const actions = {
     const data = await request.formData()
     // console.log(data)
 
-    const response = await fetch(apiurl + 'submitform', {
+    const response = await fetch(apiurl + 'simpletest', {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(data)
+      body: data
     });
 
-    // console.log(response)
+    const resData = await response.json();
+    console.log(resData)
   }
 };
