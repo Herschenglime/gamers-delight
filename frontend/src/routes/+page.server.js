@@ -52,11 +52,15 @@ export const load = async () => {
 export const actions = {
   default: async ({ request }) => {
     const data = await request.formData()
+    const simpleData = {message: "hello good friend"}
     // console.log(data)
 
     const response = await fetch(apiurl + 'simpletest', {
       method: 'POST',
-      body: data
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(simpleData)
     });
 
     const resData = await response.json();

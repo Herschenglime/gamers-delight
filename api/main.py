@@ -218,6 +218,10 @@ class Simple(BaseModel):
 
 @app.post("/simpletest")
 async def testit(item: Simple) -> str:
+<<<<<<< HEAD
+=======
+   print("aaaaaaaaahhhhh")
+>>>>>>> 571d336b5001fa3789bc528fe4dfd7173a9d3cd2
    return item.message
    
 @app.post("/submitwithpydant")
