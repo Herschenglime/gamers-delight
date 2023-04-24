@@ -210,8 +210,8 @@ class Item(BaseModel):
    genre: str
    genreNum: str
    sortBy: str
-   SortAlg: str
    ascend: str
+   sortAlg: str
 
 class Simple(BaseModel):
    message: str

@@ -57,12 +57,13 @@ export const actions = {
     formData.forEach((value, key) => (gameObj[key] = value));
 
     console.log(gameObj)
-    const simpleData = {message: "hello good friend"}
+    const simpleData = { message: "hello good friend" }
     // console.log(data)
 
     const response = await fetch(apiurl + 'submitwithpydant', {
       method: 'POST',
       headers: {
+        'Accept': 'application/json',
         "Content-Type": "application/json",
       },
       body: JSON.stringify(gameObj)

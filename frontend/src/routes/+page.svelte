@@ -65,13 +65,13 @@
       </Card>
 
       <Card title="Sorting Algorithm">
-        <input type="radio" id="shell" value="shell" name="sort" checked />
+        <input type="radio" id="shell" value="shell" name="sortAlg" checked />
         <label for="shell">Shell Sort</label>
 
-        <input type="radio" id="quick" value="quick" name="sort" />
+        <input type="radio" id="quick" value="quick" name="sortAlg" />
         <label for="quick">Quick Sort</label>
 
-        <input type="radio" id="merge" value="merge" name="sort" />
+        <input type="radio" id="merge" value="merge" name="sortAlg" />
         <label for="merge">Merge Sort</label>
       </Card>
 
