@@ -23,16 +23,22 @@
   let gameString = '';
   $: gameString;
 
-  let selectedGame = '';
+  let selectedGameName = '';
 
   function handleGameSearch() {
-    selectedGame = gameString;
-    console.log(`swag money, you selected ${selectedGame}`);
+    selectedGameName = gameString;
+    console.log(`swag money, you selected ${selectedGameName}`);
 
     const found = gameList.find((element) => element.Name === gameString);
 
     if (found) {
       console.log(found);
+
+      console.log(attributesArray)
+      for (const attributePair of attributesArray) {
+        const attributeName = attributePair[0].slice(0,-1)
+        const option = document.getElementById(attributeName + found.)
+      }
     } else {
       alert('Game not found in database.');
     }
@@ -60,7 +66,7 @@
             {#each attributesArray as [name, list]}
               <select name={name.slice(0, -1)} id={name.slice(0, -1)}>
                 {#each list as attribute}
-                  <option value={attribute}>{attribute}</option>
+                  <option value={attribute} id="{name.slice(0, -1)}{attribute}">{attribute}</option>
                 {/each}
                 <!-- smaller each here to go through the possible values to select -->
               </select>
@@ -119,7 +125,7 @@
     <h2 style:text-align="center">Matches</h2>
     {#if form?.success}
       {#each resData[0] as game}
-        <GameCard {game}/>
+        <GameCard {game} />
       {/each}
     {/if}
   </div>
