@@ -71,5 +71,6 @@ export const actions = {
 
     const resData = await response.json();
     console.log(resData)
+    return { success: true, resData }
   }
 };

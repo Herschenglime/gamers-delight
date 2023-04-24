@@ -2,33 +2,41 @@
   import Card from './Card.svelte';
   // import { enhance } from '$app/forms';
 
+  /** @type {import('./$types').PageData} */
   export let data;
+
+  /** @type {import('./$types').ActionData} */
+  export let form;
   const { oneGame, unsorted } = data; //destructuring products array out of data object
 
   const { gameList, attributes } = unsorted;
- // console.log(gameList)
+  // console.log(gameList)
   const attributesArray = Object.entries(attributes);
 
   let gameString = '';
   $: gameString;
 
- let selectedGame = ""
+  let selectedGame = '';
 
- function handleGameSearch() {
-   selectedGame = gameString;
-   console.log(`swag money, you selected ${selectedGame}`)
+  function handleGameSearch() {
+    selectedGame = gameString;
+    console.log(`swag money, you selected ${selectedGame}`);
 
-   const found = gameList.find(element => element.Name === gameString);
+    const found = gameList.find((element) => element.Name === gameString);
 
-   if (found) {
-     console.log(found)
-   } else {
-     alert("Game not found in database.")
-   }
- }
+    if (found) {
+      console.log(found);
+    } else {
+      alert('Game not found in database.');
+    }
+  }
 </script>
 
 <h1 style:text-align="center">Gamer's Delight</h1>
+
+{#if form?.success}
+  <p>got a resopnse lol</p>
+{/if}
 
 <div class="container">
   <div id="left" class="split">
@@ -37,8 +45,6 @@
     <button on:click={handleGameSearch}>Search game</button>
 
     <p>{gameString}</p>
-
-
 
     <form method="POST">
       <Card title="Weights">
