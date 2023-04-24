@@ -214,8 +214,8 @@ class Item(BaseModel):
    ascend: str
 
 @app.post("/simpletest")
-async def testit():
-   return "got"
+async def testit(s: str):
+   return s
    
 @app.post("/submitwithpydant")
 async def create_item(item: Item):
