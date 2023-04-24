@@ -1,5 +1,6 @@
 <script>
   import Card from './Card.svelte';
+ // import { enhance } from '$app/forms';
 
   export let data;
   const { oneGame, unsorted } = data; //destructuring products array out of data object
@@ -16,7 +17,6 @@
       <label for="game-name">Game name?</label>
       <!-- <input type="text" id="game" name="game"/> -->
 
-
       <Card title="Weights">
         <!-- put an each block here once we get the things we care about -->
         <fieldset>
@@ -24,7 +24,7 @@
             {#each attributesArray as [name, list]}
               <select name={name.slice(0, -1)} id={name.slice(0, -1)}>
                 {#each list as attribute}
-                  <option value={attribute.toLowerCase()}>{attribute}</option>
+                  <option value={attribute}>{attribute}</option>
                 {/each}
                 <!-- smaller each here to go through the possible values to select -->
               </select>
@@ -45,30 +45,30 @@
 
       <Card title="Sort By">
         <fieldset>
-          <input type="radio" id="sales" name="sortBy" value="sales" checked />
+          <input type="radio" id="sales" name="sortBy" value="Global_Sales" />
           <label for="sales">Sales</label>
 
-          <input type="radio" id="critic-score" name="sortBy" value="critic-score" />
+          <input type="radio" id="critic-score" name="sortBy" value="Critic_Score" checked/>
           <label for="critic-score">Critic Score</label>
 
-          <input type="radio" id="user-score" name="sortBy" value="user-score" />
+          <input type="radio" id="user-score" name="sortBy" value="User_Score" />
           <label for="user-score">User Score</label>
 
           <br />
 
-          <input type="radio" id="ascending" name="ascend" value=true />
+          <input type="radio" id="ascending" name="ascend" value="true" />
           <label for="ascending">Ascending</label>
 
-          <input type="radio" id="descending" name="ascend" value=false checked />
+          <input type="radio" id="descending" name="ascend" value="false" checked />
           <label for="descending">Descending</label>
         </fieldset>
       </Card>
 
       <Card title="Sorting Algorithm">
-        <input type="radio" id="shell" value="shell" name="sortAlg" checked />
+        <input type="radio" id="shell" value="shell" name="sortAlg" />
         <label for="shell">Shell Sort</label>
 
-        <input type="radio" id="quick" value="quick" name="sortAlg" />
+        <input type="radio" id="quick" value="quick" name="sortAlg" checked />
         <label for="quick">Quick Sort</label>
 
         <input type="radio" id="merge" value="merge" name="sortAlg" />

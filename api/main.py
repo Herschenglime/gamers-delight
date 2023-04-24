@@ -221,8 +221,7 @@ async def testit(item: Simple) -> str:
    return item.message
    
 @app.post("/submitwithpydant")
-async def create_item(item: Item) -> str:
-  return item.genre
+async def create_item(item: Item):
   if item.ascend == 'true':
     return rank_games(unsortedList,item.publisher,int(item.publisherNum),item.developer,int(item.developerNum),item.platform,int(item.platformNum),item.genre,int(item.genreNum),item.sortBy, item.sortAlg, True)
   else:
