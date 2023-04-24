@@ -51,16 +51,21 @@ export const load = async () => {
 /** @type {import('./$types').Actions} */
 export const actions = {
   default: async ({ request }) => {
-    const data = await request.formData()
+    const formData = await request.formData()
+    const gameObj = {}
+
+    formData.forEach((value, key) => (gameObj[key] = value));
+
+    console.log(gameObj)
     const simpleData = {message: "hello good friend"}
     // console.log(data)
 
-    const response = await fetch(apiurl + 'simpletest', {
+    const response = await fetch(apiurl + 'submitwithpydant', {
       method: 'POST',
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(simpleData)
+      body: JSON.stringify(gameObj)
     });
 
     const resData = await response.json();
