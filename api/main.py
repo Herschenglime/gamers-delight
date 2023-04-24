@@ -217,21 +217,19 @@ class Simple(BaseModel):
    message: str
 
 @app.post("/simpletest")
-async def testit(item: Simple):
+async def testit(item: Simple) -> str:
    return item.message
    
 @app.post("/submitwithpydant")
 async def create_item(item: Item):
-   if item.gameName == '':
-      if item.ascend == 'true':
-        return rank_games(unsortedList,item.publisher,int(item.publisherNum),item.developer,int(item.developerNum),item.platform,int(item.platformNum),item.genre,int(item.genreNum),item.sortBy, item.sortAlg, True)
-      else:
-         return rank_games(unsortedList,item.publisher,int(item.publisherNum),item.developer,int(item.developerNum),item.platform,int(item.platformNum),item.genre,int(item.genreNum),item.sortBy, item.sortAlg, False)
-   else:
-      if item.ascend == 'true':
-         return rank_from_game(unsortedList, int(item.gameName), item.publisherNum,int(item.developerNum),int(item.platformNum),int(item.genreNum),item.sortBy,item.sortAlg,True)
-      else:
-         return rank_from_game(unsortedList, int(item.gameName), item.publisherNum,int(item.developerNum),int(item.platformNum),int(item.genreNum),item.sortBy,item.sortAlg,False)
+  if item.ascend == 'true':
+    return rank_games(unsortedList,item.publisher,int(item.publisherNum),item.developer,int(item.developerNum),item.platform,int(item.platformNum),item.genre,int(item.genreNum),item.sortBy, item.sortAlg, True)
+  else:
+    return rank_games(unsortedList,item.publisher,int(item.publisherNum),item.developer,int(item.developerNum),item.platform,int(item.platformNum),item.genre,int(item.genreNum),item.sortBy, item.sortAlg, False)
+     # if item.ascend == 'true':
+     #    return rank_from_game(unsortedList, int(item.gameName), item.publisherNum,int(item.developerNum),int(item.platformNum),int(item.genreNum),item.sortBy,item.sortAlg,True)
+     # else:
+      #   return rank_from_game(unsortedList, int(item.gameName), item.publisherNum,int(item.developerNum),int(item.platformNum),int(item.genreNum),item.sortBy,item.sortAlg,False)
 
 
 
