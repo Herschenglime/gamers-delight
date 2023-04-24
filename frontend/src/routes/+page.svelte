@@ -118,17 +118,15 @@
     <h2 style:text-align="center">Matches</h2>
     {#if form?.success}
       {#each resData[0] as game}
-        <Card title={oneGame[0].Name}>
-          {#if oneGame[0].Similarity_Score}
-            this game similar as heck yo
-          {:else}
-            not similar, yo
+        <Card title={game.Name}>
+          {#if game.Similarity_Score}
+            <p>Similarity Score: {game.Similarity_Score}</p>
           {/if}
 
-          <h4>Year: {oneGame[0].Year_of_Release}</h4>
-          <h4>Sales: {(oneGame[0].Global_Sales * 1000000).toLocaleString()}</h4>
-          <h4>Platform: {oneGame[0].Global_Sales.Platform}</h4>
-          <h4>Genre: {oneGame[0].Genre}</h4>
+          <h4>Year: {game.Year_of_Release}</h4>
+          <h4>Sales: {(game.Global_Sales * 1000000).toLocaleString()}</h4>
+          <h4>Platform: {game.Global_Sales.Platform}</h4>
+          <h4>Genre: {game.Genre}</h4>
         </Card>
       {/each}
     {/if}
