@@ -8,8 +8,12 @@
     <p>Similarity Score: {game.Similarity_Score}</p>
   {/if}
 
-  <h4>Year: {game.Year_of_Release}</h4>
-  <h4>Sales: {(game.Global_Sales * 1000000).toLocaleString()}</h4>
-  <h4>Platform: {game.Platform}</h4>
-  <h4>Genre: {game.Genre}</h4>
+  <p><b>Year:</b> {game.Year_of_Release}</p>
+  <p><b>Sales:</b> {(game.Global_Sales * 1000000).toLocaleString()}</p>
+  <p><b>Platform:</b> {game.Platform}</p>
+  <p><b>Genre:</b> {game.Genre}</p>
+
+  {#if game.Critic_Score != -1}
+    <p><b>Critic Score:</b> {game.Critic_Score}</p>
+  {/if}
 </Card>
