@@ -40,7 +40,7 @@
         console.log(attributeName);
         const selectElement = document.getElementById(attributeName)
 
-        selectElement.value = found[attributeName]
+        selectElement.value = found[attributeName.charAt(0).toUpperCase() + attributeName.slice(1)]
       }
     } else {
       alert('Game not found in database.');
