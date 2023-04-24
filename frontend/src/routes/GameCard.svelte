@@ -16,4 +16,7 @@
   {#if game.Critic_Score != -1}
     <p><b>Critic Score:</b> {game.Critic_Score}</p>
   {/if}
+  {#if game.User_Score != -1}
+    <p><b>User Score:</b> {game.User_Score}</p>
+  {/if}
 </Card>

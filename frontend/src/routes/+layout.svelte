@@ -1,7 +1,7 @@
 
 <svelte:head>
    <!-- this makes the page dark by default -->
-  <meta name="color-scheme" content="dark light"/>
+  <meta name="color-scheme" content="dark"/>
 </svelte:head>
 
 <slot/>
