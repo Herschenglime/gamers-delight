@@ -14,7 +14,8 @@
   <div id="left" class="split">
     <form method="POST">
       <label for="game-name">Game name?</label>
-      <input type="text" id="game" name="game"/>
+      <!-- <input type="text" id="game" name="game"/> -->
+
 
       <Card title="Weights">
         <!-- put an each block here once we get the things we care about -->
