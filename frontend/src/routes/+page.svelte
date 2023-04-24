@@ -8,8 +8,15 @@
   const { gameList, attributes } = unsorted;
   const attributesArray = Object.entries(attributes);
 
-  let game = '';
-  $: game;
+  let gameString = '';
+  $: gameString;
+
+ let selectedGame = ""
+
+ function handleGameSearch() {
+   selectedGame = gameString;
+   console.log(`swag money, you selected ${selectedGame}`)
+ }
 </script>
 
 <h1 style:text-align="center">Gamer's Delight</h1>
@@ -17,8 +24,10 @@
 <div class="container">
   <div id="left" class="split">
     <label for="game-name">Game name?</label>
-    <input type="text" id="game" name="game" bind:value={game} />
-    <h1>{game}</h1>
+    <input type="text" id="game" name="game" bind:value={gameString} />
+    <p>{gameString}</p>
+
+    <button on:click={handleGameSearch}>Search game</button>
 
 
     <form method="POST">
