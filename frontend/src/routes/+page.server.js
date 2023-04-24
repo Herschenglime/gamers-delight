@@ -15,19 +15,19 @@ export const load = async () => {
     const listRes = await fetch(apiurl + 'unsorted')
     const gameList = await listRes.json() //waits on the above, then fires
 
-    const Publisher = new Set()
-    const Developer = new Set()
-    const Platform = new Set()
-    const Genre = new Set()
+    const publisher = new Set()
+    const developer = new Set()
+    const platform = new Set()
+    const genre = new Set()
 
     for (const game of gameList) {
-      Publisher.add(game.Publisher)
-      Developer.add(game.Developer)
-      Platform.add(game.Platform)
-      Genre.add(game.Genre)
+      publisher.add(game.Publisher)
+      developer.add(game.Developer)
+      platform.add(game.Platform)
+      genre.add(game.Genre)
     }
 
-    const attributes = { Publisher,Developer, Platform,Genre }
+    const attributes = { publisher,developer, platform,genre }
 
     for (const attributeName in attributes) {
       //convert set to array for iterability in svelte
@@ -48,6 +48,7 @@ export const load = async () => {
 /** @type {import('./$types').Actions} */
 export const actions = {
   default: async ({ request }) => {
+    console.log("submitted form")
     const formData = await request.formData()
     const gameObj = {}
 
@@ -55,7 +56,6 @@ export const actions = {
 
     console.log(gameObj)
     const simpleData = { message: "hello good friend" }
-    // console.log(data)
 
     const response = await fetch(apiurl + 'submitwithpydant', {
       method: 'POST',
