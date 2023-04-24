@@ -1,22 +1,27 @@
 <script>
   import Card from './Card.svelte';
- // import { enhance } from '$app/forms';
+  // import { enhance } from '$app/forms';
 
   export let data;
   const { oneGame, unsorted } = data; //destructuring products array out of data object
 
   const { gameList, attributes } = unsorted;
   const attributesArray = Object.entries(attributes);
+
+  let game = '';
+  $: game;
 </script>
 
 <h1 style:text-align="center">Gamer's Delight</h1>
 
 <div class="container">
   <div id="left" class="split">
-    <form method="POST">
-      <label for="game-name">Game name?</label>
-      <!-- <input type="text" id="game" name="game"/> -->
+    <label for="game-name">Game name?</label>
+    <input type="text" id="game" name="game" bind:value={game} />
+    <h1>{game}</h1>
 
+
+    <form method="POST">
       <Card title="Weights">
         <!-- put an each block here once we get the things we care about -->
         <fieldset>
@@ -48,7 +53,7 @@
           <input type="radio" id="sales" name="sortBy" value="Global_Sales" />
           <label for="sales">Sales</label>
 
-          <input type="radio" id="critic-score" name="sortBy" value="Critic_Score" checked/>
+          <input type="radio" id="critic-score" name="sortBy" value="Critic_Score" checked />
           <label for="critic-score">Critic Score</label>
 
           <input type="radio" id="user-score" name="sortBy" value="User_Score" />
