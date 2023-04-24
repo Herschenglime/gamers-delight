@@ -218,14 +218,11 @@ class Simple(BaseModel):
 
 @app.post("/simpletest")
 async def testit(item: Simple) -> str:
-<<<<<<< HEAD
-=======
-   print("aaaaaaaaahhhhh")
->>>>>>> 571d336b5001fa3789bc528fe4dfd7173a9d3cd2
    return item.message
    
 @app.post("/submitwithpydant")
-async def create_item(item: Item):
+async def create_item(item: Item) -> str:
+  return item.genre
   if item.ascend == 'true':
     return rank_games(unsortedList,item.publisher,int(item.publisherNum),item.developer,int(item.developerNum),item.platform,int(item.platformNum),item.genre,int(item.genreNum),item.sortBy, item.sortAlg, True)
   else:
