@@ -219,7 +219,7 @@ class Simple(BaseModel):
    gameName: str
 
 @app.post("/game-query")
-async def testit(item: Simple) -> str:
+async def testit(item: Simple):
    return gameMap[item.gameName]
    
 @app.post("/submitwithpydant")
