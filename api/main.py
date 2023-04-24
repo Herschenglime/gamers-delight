@@ -217,7 +217,8 @@ class Simple(BaseModel):
    message: str
 
 @app.post("/simpletest")
-async def testit(item: Simple):
+async def testit(item: Simple) -> str:
+   print("aaaaaaaaahhhhh")
    return item.message
    
 @app.post("/submitwithpydant")
