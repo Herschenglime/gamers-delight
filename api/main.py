@@ -53,11 +53,12 @@ def quicksortrecursive(unsortedList, sortBy):
     return quicksortrecursive(smallerThan, sortBy) + equalTo + quicksortrecursive(greaterThan, sortBy)
 
 def mergesort(unsortedList, sortBy, ascending = True):
-    start = time.perf_counter()
-    sortedascend = mergesortrecursive(unsortedList, sortBy)
-    if (ascending):
-        return sortedascend, (time.perf_counter() - start)
-    return sortedascend.reverse(), (time.perf_counter() - start)
+  start = time.perf_counter()
+  sortedascend = mergesortrecursive(unsortedList, sortBy)
+  if (ascending):
+    return sortedascend, (time.perf_counter() - start)
+  sortedascend.reverse()
+  return sortedascend, (time.perf_counter() - start)
 
 def mergesortrecursive(unsortedList, sortBy):
     length = len(unsortedList)
@@ -107,7 +108,8 @@ def shellsort(unsortedList, sortBy, ascending = True, gapFactor = 2):
         gap //= gapFactor
     if (ascending):
       return sortedList, (time.perf_counter() - start)
-    return sortedList.reverse(), (time.perf_counter() - start)
+    sortedList.reverse()
+    return sortedList, (time.perf_counter() - start)
 
 def rank_games(unsortedList, publisherGiven, publisherNum, developerGiven, developerNum, platformGiven, platformNum, genreGiven, genreNum, sortBy, sortAlg, Ascend):
 
