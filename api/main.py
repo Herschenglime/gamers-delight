@@ -216,11 +216,11 @@ class Item(BaseModel):
    sortAlg: str
 
 class Simple(BaseModel):
-   message: str
+   gameName: str
 
-@app.post("/simpletest")
+@app.post("/game-query")
 async def testit(item: Simple) -> str:
-   return item.message
+   return gameMap[item.gameName]
    
 @app.post("/submitwithpydant")
 async def create_item(item: Item):
@@ -233,18 +233,3 @@ async def create_item(item: Item):
      # else:
       #   return rank_from_game(unsortedList, int(item.gameName), item.publisherNum,int(item.developerNum),int(item.platformNum),int(item.genreNum),item.sortBy,item.sortAlg,False)
 
-
-
-
-@app.get("/items/{item_id}")
-async def read_item(item_id: int):
-    return {"item_id": item_id}
-
-@app.get("/users/me")
-async def read_user_me():
-    return {"user_id": "the current user"}
-
-
-@app.get("/users/{user_id}")
-async def read_user(user_id: str):
-    return {"user_id": user_id}
