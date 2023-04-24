@@ -201,7 +201,6 @@ async def handle_form(gameName: str = Form(...), publisher: str = Form(...), pub
          return rank_from_game(unsortedList, gameName, publisherNum,developerNum,platformNum,genreNum,sortBy,sortAlg,False)
       
 class Item(BaseModel):
-   gameName: str | None = None
    publisher: str
    publisherNum: str
    developer: str
@@ -214,6 +213,10 @@ class Item(BaseModel):
    SortAlg: str
    ascend: str
 
+@app.post("/simpletest")
+async def testit(item:Item):
+   return item.publisher
+   
 @app.post("/submitwithpydant")
 async def create_item(item: Item):
    if item.gameName == '':
