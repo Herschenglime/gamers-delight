@@ -1,5 +1,6 @@
 <script lang="js">
   import Card from './Card.svelte';
+  import GameCard from './GameCard.svelte';
   // import { enhance } from '$app/forms';
 
   /** @type {import('./$types').PageData} */
@@ -118,16 +119,7 @@
     <h2 style:text-align="center">Matches</h2>
     {#if form?.success}
       {#each resData[0] as game}
-        <Card title={game.Name}>
-          {#if game.Similarity_Score}
-            <p>Similarity Score: {game.Similarity_Score}</p>
-          {/if}
-
-          <h4>Year: {game.Year_of_Release}</h4>
-          <h4>Sales: {(game.Global_Sales * 1000000).toLocaleString()}</h4>
-          <h4>Platform: {game.Global_Sales.Platform}</h4>
-          <h4>Genre: {game.Genre}</h4>
-        </Card>
+        <GameCard {game}/>
       {/each}
     {/if}
   </div>
