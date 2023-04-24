@@ -1,4 +1,4 @@
-<script>
+<script lang="js">
   import Card from './Card.svelte';
   // import { enhance } from '$app/forms';
 
@@ -6,6 +6,7 @@
   const { oneGame, unsorted } = data; //destructuring products array out of data object
 
   const { gameList, attributes } = unsorted;
+ // console.log(gameList)
   const attributesArray = Object.entries(attributes);
 
   let gameString = '';
@@ -16,6 +17,14 @@
  function handleGameSearch() {
    selectedGame = gameString;
    console.log(`swag money, you selected ${selectedGame}`)
+
+   const found = gameList.find(element => element.Name === gameString);
+
+   if (found) {
+
+   } else {
+     alert("Game not found in database.")
+   }
  }
 </script>
 
