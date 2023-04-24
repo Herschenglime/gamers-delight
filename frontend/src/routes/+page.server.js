@@ -30,9 +30,6 @@ export const load = async () => {
     const attributes = { Publisher,Developer, Platform,Genre }
 
     for (const attributeName in attributes) {
-      attributes[attributeName].delete(-1)
-      attributes[attributeName].add("N/A")
-
       //convert set to array for iterability in svelte
       attributes[attributeName] = [...attributes[attributeName]]
     }

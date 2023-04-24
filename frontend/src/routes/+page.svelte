@@ -37,7 +37,10 @@
       console.log(attributesArray);
       for (const attributePair of attributesArray) {
         const attributeName = attributePair[0];
-        console.log(`${attributeName}-`);
+        console.log(attributeName);
+        const selectElement = document.getElementById(attributeName)
+
+        selectElement.value = found[attributeName]
       }
     } else {
       alert('Game not found in database.');
@@ -66,9 +69,9 @@
         <fieldset>
           <div class="slider-group">
             {#each attributesArray as [name, list]}
-              <select name={name.slice(0, -1)} id={name.slice(0, -1)}>
+              <select {name} id={name}>
                 {#each list as attribute}
-                  <option value={attribute} id="{name.slice(0, -1)}-{attribute}">{attribute}</option
+                  <option value={attribute} id="{name}-{attribute}">{attribute}</option
                   >
                 {/each}
                 <!-- smaller each here to go through the possible values to select -->
@@ -76,8 +79,8 @@
               <label for="">{name.charAt(0).toUpperCase() + name.slice(1)}</label>
               <input
                 type="range"
-                id="{name.slice(0, -1)}Num"
-                name="{name.slice(0, -1)}Num"
+                id="{name.toLowerCase()}Num"
+                name="{name.toLowerCase()}Num"
                 max="5"
                 step="1"
                 value="4"
