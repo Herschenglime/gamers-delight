@@ -21,7 +21,7 @@
    const found = gameList.find(element => element.Name === gameString);
 
    if (found) {
-
+     console.log(found)
    } else {
      alert("Game not found in database.")
    }
@@ -34,9 +34,10 @@
   <div id="left" class="split">
     <label for="game-name">Game name?</label>
     <input type="text" id="game" name="game" bind:value={gameString} />
+    <button on:click={handleGameSearch}>Search game</button>
+
     <p>{gameString}</p>
 
-    <button on:click={handleGameSearch}>Search game</button>
 
 
     <form method="POST">
