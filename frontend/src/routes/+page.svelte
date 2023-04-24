@@ -7,6 +7,12 @@
 
   /** @type {import('./$types').ActionData} */
   export let form;
+  const resData = form?.resData;
+  // $: matches = resData[0];
+  // $: resTime = resData[1];
+
+  // console.log(matches);
+
   const { oneGame, unsorted } = data; //destructuring products array out of data object
 
   const { gameList, attributes } = unsorted;
@@ -33,9 +39,8 @@
 </script>
 
 <h1 style:text-align="center">Gamer's Delight</h1>
-
 {#if form?.success}
-  <p>got a resopnse lol</p>
+  <h3>Response time: {resData[1]}</h3>
 {/if}
 
 <div class="container">
@@ -111,18 +116,22 @@
 
   <div id="right" class="split">
     <h2 style:text-align="center">Matches</h2>
-    <Card title={oneGame[0].Name}>
-      {#if oneGame[0].Similarity_Score}
-        this game similar as heck yo
-      {:else}
-        not similar, yo
-      {/if}
+    {#if form?.success}
+      {#each resData[0] as game}
+        <Card title={oneGame[0].Name}>
+          {#if oneGame[0].Similarity_Score}
+            this game similar as heck yo
+          {:else}
+            not similar, yo
+          {/if}
 
-      <h4>Year: {oneGame[0].Year_of_Release}</h4>
-      <h4>Sales: {(oneGame[0].Global_Sales * 1000000).toLocaleString()}</h4>
-      <h4>Platform: {oneGame[0].Global_Sales.Platform}</h4>
-      <h4>Genre: {oneGame[0].Genre}</h4>
-    </Card>
+          <h4>Year: {oneGame[0].Year_of_Release}</h4>
+          <h4>Sales: {(oneGame[0].Global_Sales * 1000000).toLocaleString()}</h4>
+          <h4>Platform: {oneGame[0].Global_Sales.Platform}</h4>
+          <h4>Genre: {oneGame[0].Genre}</h4>
+        </Card>
+      {/each}
+    {/if}
   </div>
 </div>
 
