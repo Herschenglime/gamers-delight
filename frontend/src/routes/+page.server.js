@@ -15,19 +15,19 @@ export const load = async () => {
     const listRes = await fetch(apiurl + 'unsorted')
     const gameList = await listRes.json() //waits on the above, then fires
 
-    const publishers = new Set()
-    const developers = new Set()
-    const platforms = new Set()
-    const genres = new Set()
+    const Publisher = new Set()
+    const Developer = new Set()
+    const Platform = new Set()
+    const Genre = new Set()
 
     for (const game of gameList) {
-      publishers.add(game.Publisher)
-      developers.add(game.Developer)
-      platforms.add(game.Platform)
-      genres.add(game.Genre)
+      Publisher.add(game.Publisher)
+      Developer.add(game.Developer)
+      Platform.add(game.Platform)
+      Genre.add(game.Genre)
     }
 
-    const attributes = { publishers, developers, platforms, genres }
+    const attributes = { Publisher,Developer, Platform,Genre }
 
     for (const attributeName in attributes) {
       attributes[attributeName].delete(-1)

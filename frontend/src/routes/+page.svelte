@@ -34,10 +34,10 @@
     if (found) {
       console.log(found);
 
-      console.log(attributesArray)
+      console.log(attributesArray);
       for (const attributePair of attributesArray) {
-        const attributeName = attributePair[0].slice(0,-1)
-        const option = document.getElementById(attributeName + found.)
+        const attributeName = attributePair[0];
+        console.log(`${attributeName}-`);
       }
     } else {
       alert('Game not found in database.');
@@ -47,14 +47,16 @@
 
 <h1 style:text-align="center">Gamer's Delight</h1>
 {#if form?.success}
-  <h3>Response time: {resData[1]}</h3>
+  <h3>Sort time: {resData[1]}</h3>
 {/if}
 
 <div class="container">
   <div id="left" class="split">
-    <label for="game-name">Game name?</label>
-    <input type="text" id="game" name="game" bind:value={gameString} />
-    <button on:click={handleGameSearch}>Search game</button>
+    <form on:submit|preventDefault={handleGameSearch}>
+      <label for="game-name">Game name?</label>
+      <input type="text" id="game" name="game" bind:value={gameString} />
+      <button>Search game</button>
+    </form>
 
     <p>{gameString}</p>
 
@@ -66,7 +68,8 @@
             {#each attributesArray as [name, list]}
               <select name={name.slice(0, -1)} id={name.slice(0, -1)}>
                 {#each list as attribute}
-                  <option value={attribute} id="{name.slice(0, -1)}{attribute}">{attribute}</option>
+                  <option value={attribute} id="{name.slice(0, -1)}-{attribute}">{attribute}</option
+                  >
                 {/each}
                 <!-- smaller each here to go through the possible values to select -->
               </select>

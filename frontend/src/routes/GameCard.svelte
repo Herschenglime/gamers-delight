@@ -5,7 +5,7 @@
 
 <Card title={game.Name}>
   {#if game.Similarity_Score}
-    <p>Similarity Score: {game.Similarity_Score}</p>
+    <p><b>Similarity Score:</b> {game.Similarity_Score}</p>
   {/if}
 
   <p><b>Year:</b> {game.Year_of_Release}</p>
