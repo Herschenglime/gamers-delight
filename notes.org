@@ -13,6 +13,7 @@ split the page: https://www.w3schools.com/howto/howto_css_split_screen.asp
 - better way: https://stackoverflow.com/a/59361917
 https://stackoverflow.com/questions/71364923/html-split-page-vertically-in-two-halves-and-allow-individual-scrolling
 this if need be, but not a problem yet
+https://stackoverflow.com/questions/32169383/how-to-scroll-2-divs-separately-using-full-height-of-browser
 
 ** Limiting size of select
 https://stackoverflow.com/questions/3780843/limit-initial-width-of-select-list
