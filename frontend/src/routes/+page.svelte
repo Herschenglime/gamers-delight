@@ -33,14 +33,20 @@
 
     if (found) {
       console.log(found);
-
       console.log(attributesArray);
       for (const attributePair of attributesArray) {
         const attributeName = attributePair[0];
-        console.log(attributeName);
-        const selectElement = document.getElementById(attributeName)
+        const selectElement = document.getElementById(attributeName);
 
-        selectElement.value = found[attributeName.charAt(0).toUpperCase() + attributeName.slice(1)]
+        let foundVal = found[attributeName.charAt(0).toUpperCase() + attributeName.slice(1)] //uppercase first letter
+
+        console.log("foundVal pre-conversion: " + foundVal)
+        foundVal = foundVal == -1 ? "N/A" : foundVal
+        console.log("foundVal post-conversion: " + foundVal)
+
+        console.log(attributeName);
+
+        selectElement.value = foundVal
       }
     } else {
       alert('Game not found in database.');
@@ -71,8 +77,7 @@
             {#each attributesArray as [name, list]}
               <select {name} id={name}>
                 {#each list as attribute}
-                  <option value={attribute} id="{name}-{attribute}">{attribute}</option
-                  >
+                  <option value={attribute} id="{name}-{attribute}">{attribute}</option>
                 {/each}
                 <!-- smaller each here to go through the possible values to select -->
               </select>
