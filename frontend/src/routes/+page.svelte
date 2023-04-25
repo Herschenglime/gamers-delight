@@ -104,8 +104,8 @@
           <input type="radio" id="critic-score" name="sortBy" value="Critic_Score" checked />
           <label for="critic-score">Critic Score</label>
 
-          <input type="radio" id="user-score" name="sortBy" value="User_Score" />
-          <label for="user-score">User Score</label>
+          <input type="radio" id="year" name="sortBy" value="Year_of_Release" />
+          <label for="year">Year of Release</label>
 
           <br />
 
