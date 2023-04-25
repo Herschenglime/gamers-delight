@@ -38,15 +38,15 @@
         const attributeName = attributePair[0];
         const selectElement = document.getElementById(attributeName);
 
-        let foundVal = found[attributeName.charAt(0).toUpperCase() + attributeName.slice(1)] //uppercase first letter
+        let foundVal = found[attributeName.charAt(0).toUpperCase() + attributeName.slice(1)]; //uppercase first letter
 
-        console.log("foundVal pre-conversion: " + foundVal)
-        foundVal = foundVal == -1 ? "N/A" : foundVal
-        console.log("foundVal post-conversion: " + foundVal)
+        console.log('foundVal pre-conversion: ' + foundVal);
+        foundVal = foundVal == -1 ? 'N/A' : foundVal;
+        console.log('foundVal post-conversion: ' + foundVal);
 
         console.log(attributeName);
 
-        selectElement.value = foundVal
+        selectElement.value = foundVal;
       }
     } else {
       alert('Game not found in database.');
@@ -134,11 +134,13 @@
 
   <div id="right" class="split">
     <h2 style:text-align="center">Matches</h2>
-    {#if form?.success}
-      {#each resData[0] as game}
-        <GameCard {game} />
-      {/each}
-    {/if}
+    <div class="scrollable-list">
+      {#if form?.success}
+        {#each resData[0] as game}
+          <GameCard {game} />
+        {/each}
+      {/if}
+    </div>
   </div>
 </div>
 
@@ -155,9 +157,12 @@
 
   .split {
     display: inline-block;
-    overflow-y: auto;
     margin-top: 10px;
     margin: 5px;
+  }
+  .scrollable-list {
+    height: 80vh;
+    overflow-y: scroll;
   }
   /* Control the left side */
   #left {
