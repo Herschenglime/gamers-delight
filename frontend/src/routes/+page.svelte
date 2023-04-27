@@ -14,7 +14,7 @@
 
   // console.log(matches);
 
-  const { oneGame, unsorted } = data; //destructuring products array out of data object
+  const { unsorted } = data; //destructuring products array out of data object
 
   const { gameList, attributes } = unsorted;
   // console.log(gameList)
@@ -74,28 +74,34 @@
         <form method="POST">
           <Card title="Weights">
             <!-- put an each block here once we get the things we care about -->
-            <fieldset>
-              <div class="slider-group">
-                {#each attributesArray as [name, list]}
-                  <select {name} id={name}>
-                    {#each list as attribute}
-                      <option value={attribute} id="{name}-{attribute}">{attribute}</option>
-                    {/each}
-                    <!-- smaller each here to go through the possible values to select -->
-                  </select>
-                  <label for="">{name.charAt(0).toUpperCase() + name.slice(1)}</label>
-                  <input
-                    type="range"
-                    id="{name.toLowerCase()}Num"
-                    name="{name.toLowerCase()}Num"
-                    max="5"
-                    step="1"
-                    value="4"
-                  />
-                  <br />
-                {/each}
-              </div>
-            </fieldset>
+            {#await attributesArray}
+              <p>...data not yet loaded...</p>
+            {:then attributesArray}
+              <fieldset>
+                <div class="slider-group">
+                  {#each attributesArray as [name, list]}
+                    <select {name} id={name}>
+                      {#each list as attribute}
+                        <option value={attribute} id="{name}-{attribute}">{attribute}</option>
+                      {/each}
+                      <!-- smaller each here to go through the possible values to select -->
+                    </select>
+                    <label for="">{name.charAt(0).toUpperCase() + name.slice(1)}</label>
+                    <input
+                      type="range"
+                      id="{name.toLowerCase()}Num"
+                      name="{name.toLowerCase()}Num"
+                      max="5"
+                      step="1"
+                      value="4"
+                    />
+                    <br />
+                  {/each}
+                </div>
+              </fieldset>
+            {:catch error}
+              <p>data didn't load :(</p>
+            {/await}
           </Card>
 
           <Card title="Sort By">
