@@ -139,7 +139,7 @@
       <h2 style:text-align="center">Matches</h2>
       <div class="scrollable-list">
         {#if form?.success}
-          {#each resData[0] as game}
+          {#each resData[0].slice(0,50) as game}
             <GameCard {game} />
           {/each}
         {/if}
